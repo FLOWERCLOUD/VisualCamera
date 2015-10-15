@@ -82,7 +82,7 @@ public:
 			printf("mtl%d: %f, %f, %f;\n", i, tmp.x, tmp.y, tmp.z);
 		}
 	}
-
+	WBoundingBox sceneBox;					//整个场景的包围盒
 private:
 	vector<WLight*>lights;					//存储灯光指针
 	WMaterial**materials;					//Material指针数组
@@ -90,7 +90,7 @@ private:
 	WPrimitive*primitives;					//Primitive数组
 	unsigned int nPrimitives;				//Primitive总数
 	unsigned int nSubPrimitives;			//SubPrimitive总数
-	WBoundingBox sceneBox;					//整个场景的包围盒
+	
 
 	WTriangle*triangles;					//三角形数组
 	unsigned int nTriangles;				//三角形个数
