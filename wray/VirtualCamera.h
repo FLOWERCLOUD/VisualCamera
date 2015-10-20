@@ -8,9 +8,9 @@ public:
 
 public:
 	void readObj(char* fileName);
-	void beforegetVirtualPoto(char* fileName);
+	void beforegetVirtualPoto(const char* fileName);
 	void getVirtualPoto(float eye[3],float dir[3],float lenLength,char* filename,
-		float pixelSize,int x_Width,int y_Heigth, vector<WVector3>& result);
+		float pixelSize,int x_Width,int y_Heigth, vector<WVector3>& result ,vector<WVector3>& norm);
 
 	WScene& getScene(){return m_scene;}
 	

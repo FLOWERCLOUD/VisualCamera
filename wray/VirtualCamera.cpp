@@ -3,6 +3,7 @@
 
 iVirtualCamera::iVirtualCamera()
 {
+	m_acceletator = NULL;
 }
 
 iVirtualCamera::~iVirtualCamera()
@@ -20,17 +21,19 @@ void iVirtualCamera::readObj(char* fileName)
 	m_acceletator->buildTree(m_scene);
 }
 // should be call before getVirtualPoto
-void iVirtualCamera::beforegetVirtualPoto(char* fileName)
+void iVirtualCamera::beforegetVirtualPoto(const char* fileName)
 {
 	//build tree
-	m_reader.readFile(fileName);
+	m_reader.clear();
+	m_scene.clearScene();
+	m_reader.readObjFile(fileName);
 	m_scene.buildScene(m_reader);
-	m_acceletator = new WSimpleBVH();
+	if(!m_acceletator)m_acceletator = new WSimpleBVH();
 	m_acceletator->buildTree(m_scene);
 
 }
 void iVirtualCamera::getVirtualPoto(float eye[3],float dir[3],float lenLength,char* filename,
-	                                float pixelSize,int x_Width,int y_Heigth, vector<WVector3>& result)
+	                                float pixelSize,int x_Width,int y_Heigth, vector<WVector3>& result_position ,vector<WVector3>& reusult_norm)
 {
 	//readObj(filename);//build tree
 	WVector3 up(0,0,1);
@@ -51,8 +54,8 @@ void iVirtualCamera::getVirtualPoto(float eye[3],float dir[3],float lenLength,ch
 // 	int y_Heigth = 256;
 
 	WVector3 vc(eye[0],eye[1],eye[2]);
-	result.clear();
-
+	result_position.clear();
+	reusult_norm.clear();
 	for (int i = - y_Heigth; i <= y_Heigth; i++)
 	{
 		for (int j = - x_Width; j <= x_Width; j++)
@@ -70,7 +73,8 @@ void iVirtualCamera::getVirtualPoto(float eye[3],float dir[3],float lenLength,ch
 
 			if (isIntersect)
 			{
-			    result.push_back(DG.position);
+			    result_position.push_back(DG.position);
+				reusult_norm.push_back(DG.normal);
 			}
 
 		}
