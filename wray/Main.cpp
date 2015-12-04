@@ -244,7 +244,7 @@ void init()
 	glLoadIdentity();
 	gluPerspective(fovDeg,float(winWidth)/float(winHeight), 0.1f,1000.0f);
 
-	reader.readFile("library.obj");
+	reader.readFile("014.obj");//("library.obj");
 	//reader.readFile("tiaowu.obj");
 	//reader.readFile("mesh_0000.obj");
 
@@ -343,7 +343,7 @@ void init()
 }
 
 void displayFcn()
-{
+{   std::cout<<"displayFcn"<<std::endl;
 	DWORD dwThreadId,dwThrdParam=1;
 	HANDLE hThread;
 	//显示模式设置
@@ -749,7 +749,7 @@ int main(int argc, char** argv)
 	glutKeyboardFunc(keyFcn);
 	glutMouseFunc(mouseFcn);
 	glutMotionFunc(mouseMoveFcn);
-	glutTimerFunc(500, timerFcn, -1);
+	//glutTimerFunc(500, timerFcn, -1);
 
 	glutMainLoop();
 

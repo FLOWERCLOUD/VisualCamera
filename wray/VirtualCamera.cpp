@@ -20,6 +20,10 @@ void iVirtualCamera::readObj(char* fileName)
 	m_acceletator = new WSimpleBVH();
 	m_acceletator->buildTree(m_scene);
 }
+void iVirtualCamera::readPly(char* fileName)
+{
+
+}
 // should be call before getVirtualPoto
 void iVirtualCamera::beforegetVirtualPoto(const char* fileName)
 {
